@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahmad Shahir & Nur Ain</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1520623387151-b3e17f3d0173?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Welcome Screen */
+    #welcome {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      animation: fadeInUp 1s ease-out;
+    }
+
+    #welcome h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5em;
+    }
+
+    #kad {
+      display: none;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    /* Animasi masuk */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .scene {
+      width: 600px;
+      height: 400px;
+      perspective: 1000px;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1s;
+    }
+
+    .scene:hover .card {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-front {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .card-front h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      color: #444;
+      margin: 0;
+    }
+
+    .card-front h2 {
+      font-size: 1.5em;
+      margin: 10px 0;
+    }
+
+    .card-front .detail {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .card-front img {
+      width: 180px;
+      border-radius: 15px;
+      margin: 20px 0;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    input, textarea, select, button {
+      margin-bottom: 15px;
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #444;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Paparan awal (butang buka kad) -->
+  <div id="welcome">
+    <h2>Jemputan Majlis Perkahwinan</h2>
+    <p>Ahmad Shahir & Nur Ain</p>
+    <button onclick="bukaKad()">Buka Kad</button>
+  </div>
+
+  <!-- Paparan kad (flip 3D) -->
+  <div id="kad">
+    <div class="scene">
+      <div class="card">
+        <!-- Bahagian depan kad -->
+        <div class="card-face card-front">
+          <h1>Ahmad Shahir & Nur Ain</h1>
+          <h2>Majlis Perkahwinan</h2>
+          <img src="https://i.imgur.com/X2qPtWa.jpg" alt="Pengantin">
+          <div class="detail">Tarikh: 21 Jun 2026</div>
+          <div class="detail">Lokasi: Glass Hall</div>
+          <p>(Gerakkan tetikus untuk RSVP)</p>
+        </div>
+
+        <!-- Bahagian belakang kad (RSVP) -->
+        <div class="card-face card-back">
+          <form>
+            <h3>Sahkan Kehadiran (RSVP)</h3>
+            <input type="text" name="nama" placeholder="Nama Anda" required>
+            <select name="kehadiran" required>
+              <option value="">-- Akan Hadir? --</option>
+              <option value="Ya">Ya, saya akan hadir</option>
+              <option value="Tidak">Maaf, tidak dapat hadir</option>
+            </select>
+            <input type="number" name="bilangan" placeholder="Bilangan tetamu" min="1">
+            <textarea name="ucapan" placeholder="Ucapan kepada pengantin" rows="4"></textarea>
+            <button type="submit">Hantar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Muzik latar -->
+  <audio autoplay loop hidden>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Skrip kawal butang buka kad -->
+  <script>
+    function bukaKad() {
+      document.getElementById('welcome').style.display = 'none';
+      document.getElementById('kad').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
